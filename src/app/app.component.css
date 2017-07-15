@@ -1,0 +1,36 @@
+.heading{
+    color: #e08989;
+    margin:32px;
+}
+.containerForm{
+    margin-bottom: 50px;
+    border: solid 1px #cbdfe0;
+    border-radius: 6px;
+    padding-top: 15px;
+}
+.containerHeading{
+    color: #8eb9d6;
+}
+.required{
+    color: #ff7070;
+    font-size: 12px;
+    padding-left: 5px;
+}
+.medium{
+    color: orange;
+    font-size: 12px;
+    padding-left: 5px;
+}
+.stronge{
+    color: green;
+    font-size: 12px;
+    padding-left: 5px;
+}
+.btnColor{
+    background-color: #8eb9d6 !important;
+    border-color: #8eb9d6 !important;
+    cursor: pointer;
+}
+.tableData{
+    color: #666666;
+}

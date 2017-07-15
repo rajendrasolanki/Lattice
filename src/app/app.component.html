@@ -1,3 +1,63 @@
-<h1>
-  {{title}}
+<div class="progress" *ngIf="progress">
+    <div class="progress-bar" role="progressbar" [style.width]=" progress + '%'" style="height:2px;" >
+    </div>
+</div>
+<h1 class="heading">
+    Lattice
 </h1>
+<div class="container containerForm">
+    <h3 class="containerHeading"><i class="fa fa-wpforms"></i> User Form</h3>
+    <form [formGroup]="userForm" novalidate>
+        <div class="form-group">
+            <input type="text" formControlName="fullName" placeholder="Full Name" class="form-control">
+        </div>
+        <div class="form-group">
+            <input type="text" formControlName="username" placeholder="Username" class="form-control">
+            <div [hidden]="userForm.controls['username'].valid" class="required">
+                Username is required
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="password" formControlName="password" (keyup)="CheckPassword()" placeholder="Password" class="form-control">
+            <div [hidden]="userForm.controls['password'].valid" class="required">
+                Password is required
+            </div>
+            <div *ngIf="passStrengthMsg" [ngClass]="{'required':passwordLen < 5,'medium':passwordLen > 4 && passwordLen < 7,'stronge':passwordLen >= 7}">
+                {{passStrengthMsg}}
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="email" formControlName="email" placeholder="Email" class="form-control">
+            <div [hidden]="!userForm.controls['email'].hasError('required')" class="required">
+                Email is required
+            </div>
+            <div [hidden]="!userForm.controls['email'].hasError('pattern')" class="required">
+                Enter valid email
+            </div>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary btnColor" (click)="save()"  [disabled]="userForm.invalid">Submit</button>
+        </div>
+    </form>
+</div>
+<div class="container">
+    <h3 class="containerHeading"><i class="fa fa-list"></i> User List</h3>
+    <table class="table table-bordered tableData">
+        <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of userList">
+                <td>{{user.fullName}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.password}}</td>
+                <td>{{user.email}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
