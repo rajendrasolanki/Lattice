@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
             fullName:'',
             username: ['', Validators.required],
             password: ['', Validators.required],
-            email: ['', [Validators.required , Validators.pattern('^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$')]]
+            email: ['', [Validators.required , Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$')]]
         });
         this.timerSub=Observable.timer(100,25);
     }
