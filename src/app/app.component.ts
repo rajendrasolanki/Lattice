@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
     }
     ngOnInit(){
         this.userForm = this.fb.group({
+            id:'',
             fullName:'',
             username: ['', Validators.required],
             password: ['', Validators.required],
@@ -48,9 +49,10 @@ export class AppComponent implements OnInit {
         } else if (this.passwordLen <7){
             this.passStrengthMsg="Medium password";
         }else{
-            this.passStrengthMsg="Stronge password"
+            this.passStrengthMsg="Strong password"
         }
     }
-    initiateTimer(t) {
+    DeleteRecord(index){
+        this.userList.splice(index, 1);
     }
 }
