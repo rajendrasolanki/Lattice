@@ -1,5 +1,5 @@
 <div class="progress" *ngIf="progress">
-    <div class="progress-bar" role="progressbar" [style.width]=" progress + '%'" style="height:2px;" >
+    <div class="progress-bar progressBar" role="progressbar" [style.width]=" progress + '%'">
     </div>
 </div>
 <h1 class="heading">
@@ -58,7 +58,14 @@
                 <td>{{user.username}}</td>
                 <td>{{user.password}}</td>
                 <td>{{user.email}}</td>
-                <td><i class="fa fa-trash" (click)="DeleteRecord(i)"></i></td>
+                <td>
+                    <a>
+                        <i class="fa fa-edit" (click)="EditRecord(i)"></i>
+                    </a>
+                    <a>
+                        <i class="fa fa-trash" (click)="DeleteRecord(i)"></i>
+                    </a>
+                </td>
             </tr>
         </tbody>
     </table>

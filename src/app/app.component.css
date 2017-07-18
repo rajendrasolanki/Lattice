@@ -34,3 +34,9 @@
 .tableData{
     color: #666666;
 }
+.progressBar{
+    height: 2px;
+    position: fixed;
+    z-index: 1;
+    top: 0px;
+}

@@ -14,6 +14,8 @@ export class AppComponent implements OnInit {
     public passwordLen;
     public timerSub;
     public progress=null;
+    public isEdit=false;
+    public EditIndex;
     constructor(private fb: FormBuilder){
         
     }
@@ -32,15 +34,21 @@ export class AppComponent implements OnInit {
             this.progress = t;
             if(this.progress == 100){
                 sub.unsubscribe();
-                this.progress = null;                
-                this.userList.push(this.userForm.value);
-                this.userForm.reset();
+                if (this.isEdit){
+                    this.SaveEdit();
+                }
+                else{
+                    this.userList.push(this.userForm.value);
+                    this.userForm.reset();
+                }                
+                this.progress = null;
                 this.passStrengthMsg='';
             }
         });
     }
     CheckPassword(){
         let password = this.userForm.controls['password'].value;
+        if (password!=null)
         this.passwordLen=password.length;
         if (this.passwordLen == 0){
             this.passStrengthMsg='';
@@ -54,5 +62,15 @@ export class AppComponent implements OnInit {
     }
     DeleteRecord(index){
         this.userList.splice(index, 1);
+    }
+    EditRecord(index){
+        this.userForm.setValue(this.userList[index]);
+        this.EditIndex = index;
+        this.isEdit = true;
+    }
+    SaveEdit(){
+        this.userList[this.EditIndex] = this.userForm.value;
+        this.userForm.reset();
+        this.isEdit = false;
     }
 }
